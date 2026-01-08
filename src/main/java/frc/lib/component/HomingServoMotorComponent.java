@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import frc.lib.io.motor.MotorIO;
 import frc.lib.io.motor.setpoints.*;
 import frc.lib.util.UnitsUtil;
+import frc.lib.util.logging.Logger;
+
 
 /**
  * A servo motor component with automatic homing functionality.
@@ -113,9 +115,10 @@ public class HomingServoMotorComponent<M extends MotorIO> extends ServoMotorComp
                             .baseUnitMagnitude())) { // If you've been under the homing velocity threshold for the
                                                      // debounce (if you've stopped)
                 resetPosition(homingConfig.homePosition); // You know you're at the home position so reset it
-                applySetpoint(homingConfig.homeSetpoint); // Target the homing location with position control so you
-                                                          // don't keep slamming into it (this also ends homing sequence
-                                                          // because new setpoint is applied)
+                needsToHome = false; // You just finished homing so no longer need to
+                applySetpoint(homingConfig.homeSetpoint);   // Target the homing location with position control so you 
+                                                            // don't keep slamming into it (this also ends homing 
+                                                            // sequence because new setpoint is applied)
             }
         }
     }
@@ -173,6 +176,14 @@ public class HomingServoMotorComponent<M extends MotorIO> extends ServoMotorComp
     public void endHomingSequence() {
         homing = false; // Save that you're done homing
         useSoftLimits(true); // Turn soft limits back on
+    }
+
+    @Override
+    public void log(String path) {
+        super.log(path);
+        String homingPath = path + "/Homing";
+        Logger.log(homingPath, "Is Homing", homing);
+        Logger.log(homingPath, "Needs To Home", needsToHome);
     }
 
     /**
