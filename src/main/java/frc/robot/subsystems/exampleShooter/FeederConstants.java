@@ -19,7 +19,7 @@ import frc.robot.Robot;
 
 public class FeederConstants {
     // Gearing is a 36 to 16 reduction
-    public static final double gearing = (36.0 / 16.0);
+    public static final double gearing = 5;
 
     // Notable points for system
     public static final Voltage feedVoltage = Units.Volts.of(8.0);

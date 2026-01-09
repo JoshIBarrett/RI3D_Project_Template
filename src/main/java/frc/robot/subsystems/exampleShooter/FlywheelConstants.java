@@ -22,13 +22,13 @@ import frc.robot.Robot;
 
 public class FlywheelConstants {
     // Epsilon threshold is velocity that is considered "close" for internal methods and wait commands. Lower value is higher required accuracy
-    public static final AngularVelocity epsilonThreshold = Units.RPM.of(100);
+    public static final AngularVelocity epsilonThreshold = Units.RPM.of(50);
     
     // Gearing is a 48 to 40 reduction
-    public static final double gearing = (48.0 / 40.0);
+    public static final double gearing = 6.746031746031747;
 
     // Notable points for system
-    public static final AngularVelocity shotVelocity = Units.RPM.of(2000.0);
+    public static final AngularVelocity shotVelocity = Units.RPM.of(800.0);
     public static final Voltage unjamVoltage = Units.Volts.of(-8.0);
 
     // Setpoints for notable points
@@ -74,9 +74,9 @@ public class FlywheelConstants {
      */ 
     public static final TalonFXConfiguration getMainConfig() {
         TalonFXConfiguration config = ConfigUtil.getSafeFXConfig(gearing);
-        config.Slot0.kP = 1.0;
+        config.Slot0.kP = 0.5;
         config.Slot0.kD = 0.0;
-        config.Slot0.kV = 0.15;
+        config.Slot0.kV = 0.75;
 
         return config;    
     }

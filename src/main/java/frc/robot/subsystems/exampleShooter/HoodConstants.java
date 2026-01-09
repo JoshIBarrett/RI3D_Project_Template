@@ -20,7 +20,7 @@ public class HoodConstants {
     public static final Angle epsilonThreshold = Units.Degrees.of(10.0);
     
     // Gearing is a 64 to 12 reduction followed by a 5 to 1 reduction
-    public static final double gearing = (64.0 / 12.0) * (5.0 / 1.0);
+    public static final double gearing = 21.428571428571427;
     
     // Constraints of the system's movement (hard stops, potential interferences, soft limits, etc.)
     public static final Angle minAngle = Units.Radians.of(0.3);
@@ -70,7 +70,7 @@ public class HoodConstants {
     public static final TalonFXConfiguration getMainConfig() {
         TalonFXConfiguration config = ConfigUtil.getSafeFXConfig(gearing);
         ConfigUtil.withSoftLimits(config, maxAngle, minAngle);
-        config.Slot0.kP = 5.0;
+        config.Slot0.kP = 80.0;
         config.Slot0.kD = 0.0;
 
         return config;    

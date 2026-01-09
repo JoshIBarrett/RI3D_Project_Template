@@ -10,20 +10,23 @@ public class ControlBoard {
         CommandXboxController operator = ControlBoardConstants.operator;
 
         // Controls
-        s.drive.setDefaultCommand(s.drive.teleopDrive(driver));
+        // s.drive.setDefaultCommand(s.drive.teleopDrive(driver));
         
-        driver.a().onTrue(s.exampleArm.prepScore());
-        driver.x().onTrue(s.exampleIntake.unjam());
-        driver.b().onTrue(s.stowAll());
+        // driver.a().onTrue(s.exampleArm.prepScore());
+        // driver.x().onTrue(s.exampleIntake.unjam());
+        // driver.b().onTrue(s.stowAll());
         driver.y().onTrue(s.exampleShooter.prepShot());
 
-        driver.leftTrigger(ControlBoardConstants.triggerThreshold).onTrue(s.intakeToShooter());
+        // driver.leftTrigger(ControlBoardConstants.triggerThreshold).onTrue(s.intakeToShooter());
+        driver.a().onTrue(s.exampleShooter.fire());
+        
+        driver.b().onTrue(s.exampleShooter.stow());
 
         driver.rightTrigger(ControlBoardConstants.triggerThreshold).onTrue(s.exampleShooter.fireWhenReady());
-        driver.rightBumper().onTrue(s.exampleArm.score());
+        // driver.rightBumper().onTrue(s.exampleArm.score());
 
-        driver.povUp().onTrue(s.prepClimb());
-        driver.povDown().onTrue(s.exampleClimber.pull());
+        // driver.povUp().onTrue(s.prepClimb());
+        // driver.povDown().onTrue(s.exampleClimber.pull());
 
     }
 }
